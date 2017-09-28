@@ -1,0 +1,23 @@
+{
+    "name": "opd-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "test": "swagger project test"
+    },
+    "keywords": [],
+    "author": "codeGenerator",
+    "license": "ISC",
+    "dependencies": {
+        "bluebird": "^3.5.0",
+        "cuti": "git+https://github.com/capiotsoftware/cuti.git",
+        "express": "^4.15.2",
+        "log4js": "^1.1.1",
+        "mongoose": "^4.9.9",
+        "puttu-redis": "git+https://github.com/capiotsoftware/puttu-redis.git",
+        "swagger-express-mw": "^0.1.0",
+        "swagger-mongoose-crud": "git+https://github.com/capiotsoftware/swagger-mongoose-crud.git"
+    }
+}

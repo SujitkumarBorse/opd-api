@@ -1,0 +1,226 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: opd-api API
+host: 'localhost:9000'
+basePath: /opd-api
+schemes:
+  - http
+consumes:
+  - multipart/form-data
+  - application/json
+produces:
+  - application/json
+  - text/plain
+paths:
+  /v1/users:
+    x-swagger-router-controller: controller
+    get:
+      description: Retrieve a list of users
+      operationId: v1_usersList
+      parameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number of the request
+        - name: count
+          in: query
+          type: integer
+          description: Number of categories per page
+        - name: filter
+          in: query
+          type: string
+          description: Filter categories based on certain fields
+        - name: select
+          in: query
+          type: string
+          description: Comma seperated fields to be displayed
+        - name: sort
+          in: query
+          type: string
+          description: sort parameter
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    post:
+      description: Create a new users
+      operationId: v1_usersCreate
+      parameters:
+        - name: data
+          in: body
+          description: Payload to create a users
+          schema:
+            $ref: '#/definitions/users_create'
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+  /v1/users/login:
+    x-swagger-router-controller: controller
+    post:
+      description: Login to registered users
+      operationId: v1_loginUser
+      parameters:
+        - name: data
+          in: body
+          description: Payload to create a users
+          schema:
+            $ref: '#/definitions/login_user'
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+  '/v1/users/{id}':
+    x-swagger-router-controller: controller
+    get:
+      description: Retrieve a list of users
+      operationId: v1_usersShow
+      parameters:
+        - name: filter
+          in: query
+          type: string
+          description: Filter categories based on certain fields
+        - name: select
+          in: query
+          type: string
+          description: Comma seperated fields to be displayed
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the object to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    put:
+      description: Create a new users
+      operationId: v1_usersUpdate
+      parameters:
+        - name: data
+          in: body
+          description: Payload to update a users
+          schema:
+            $ref: '#/definitions/users_create'
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the users to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    delete:
+      description: Create a new users
+      operationId: v1_usersDestroy
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the users to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+definitions:
+  login_user:
+    properties:
+      email:
+        type: string
+      password:
+        type: string      
+  users_create:
+    properties:
+      _id:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      gender:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      medicalRegistrationNo:
+        type: string
+      address:
+        properties:
+          address:
+            type: string
+          city:
+            type: string
+          state:
+            type: string
+          contry:
+            type: string
+          zip:
+            type: string
+      contact:
+        properties:
+          email:
+            type: string
+          phone:
+            type: string
+          mobile:
+            type: string
+      accountDetalis:
+        properties:
+          panCardNumber:
+            type: string
+      chartedAccountant:
+        properties:
+          name:
+            type: string
+          email:
+            type: string
+          mobile:
+            type: string
+      qualification:
+        type: array
+        items:
+          properties:
+            degree:
+              type: string
+            specialization:
+              type: string
+      active:
+        type: boolean
+      created:
+        type: string
+      updated:
+        type: string
