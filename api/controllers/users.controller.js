@@ -6,6 +6,7 @@ const SMCrud = require("swagger-mongoose-crud");
 const cuti = require("cuti");
 const schema = new mongoose.Schema(definition);
 const logger = global.logger;
+var jwt = require('jsonwebtoken');
 
 var options = {
     logger: logger,
@@ -26,17 +27,44 @@ let loginUser = function (_req, _res) {
         return _res.json({ status: 'failed', message: "Username/Password is missing." });
     }
 
-    users.findOne({"email" : data.email, "password" : data.password}, (err, user) => {
+    users.findOne({ "email": data.email, "password": data.password }, (err, user) => {
+
         if (err) {
             return _res.json({ status: 'failed', message: "Something went wrong. Please tyr again later." });
-        }
+        };
+
         if (!user) {
-            return _res.json({ status: 'failed', message: "Username/Password does not match." });
-        } else {
-            // Delete password before returning response
-            delete user['password'];
-            return _res.json(user);
+            _res.json({ status: 'failed', message: 'Authentication failed. User not found.' });
+        } else if (user) {
+
+            // check if password matches
+            if (user.password != _req.body.password) {
+                _res.json({ status: 'failed', message: 'Authentication failed. Wrong password.' });
+            } else {
+
+                // if user is found and password is right
+                // create a token with only our given payload
+                // remove password from user before creating token
+                delete user['password'];
+
+                // TODO: generate secrete while user register and use it
+                var token = jwt.sign(user, 'superSecret', {
+                    expiresInMinutes: 1440 // expires in 24 hours
+                });
+
+                // return the information including token as JSON
+                user.token = token;
+                _res.json({
+                    status: 'success',
+                    user: token
+                });
+            }
+
         }
+
+
+
+
 
     });
 };
