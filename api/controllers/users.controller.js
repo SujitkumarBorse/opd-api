@@ -56,7 +56,7 @@ let loginUser = function (_req, _res) {
                 user.token = token;
                 _res.json({
                     status: 'success',
-                    user: token
+                    user: user
                 });
             }
 

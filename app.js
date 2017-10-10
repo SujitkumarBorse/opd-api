@@ -1,4 +1,3 @@
-
 "use strict";
 const SwaggerExpress = require("swagger-express-mw");
 const app = require("express")();
@@ -43,7 +42,6 @@ var logMiddleware = (req, res, next) => {
     if (reqId == Number.MAX_VALUE) {
         reqId = counter = 0;
     }
-
     logger.info(reqId + " " + req.ip + " " + req.method + " " + req.originalUrl);
     next();
     logger.trace(reqId + " Sending Response");
@@ -103,26 +101,23 @@ app.use(function (req, res, next) {
 
 module.exports = app;
 
-
-
 SwaggerExpress.create(config, function (err, swaggerExpress) {
     if (err) { throw err; }
-
     swaggerExpress.register(app);
-
     var port = process.env.PORT || 9000;
     app.listen(port, (err) => {
         if (!err) {
-
             logger.info("Server started on port " + port);
         }
         else
             logger.error(err);
     });
-
 });
 
 
 // https://scotch.io/tutorials/authenticate-a-node-js-api-with-json-web-tokens
 // https://medium.freecodecamp.org/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52
 // https://www.codementor.io/emjay/how-to-build-a-simple-session-based-authentication-system-with-nodejs-from-scratch-6vn67mcy3
+// http://jasonwatmore.com/post/2016/08/16/angular-2-jwt-authentication-example-tutorial
+// https://www.angularjs4u.com/authentication/angular-2-authentication-login-examples/
+// https://realpython.com/blog/python/user-authentication-with-angular-4-and-flask/
