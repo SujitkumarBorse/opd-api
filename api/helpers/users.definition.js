@@ -13,8 +13,8 @@ var definition = {
     "gender": {
         "type": "String",
         "enum": [
-            "Male",
-            "Female"
+            "male",
+            "female"
         ]
     },
     "email": {
@@ -34,16 +34,13 @@ var definition = {
             "type": "String"
         },
         "city": {
-            "type": "String",
-            "required": true
+            "type": "String"
         },
         "state": {
-            "type": "String",
-            "required": true
+            "type": "String"
         },
         "contry": {
-            "type": "String",
-            "required": true
+            "type": "String"
         },
         "zip": {
             "type": "String"
@@ -57,8 +54,7 @@ var definition = {
             "type": "String"
         },
         "mobile": {
-            "type": "String",
-            "required": true
+            "type": "String"
         }
     },
     "accountDetalis": {

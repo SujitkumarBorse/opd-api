@@ -17,6 +17,7 @@
         "jsonwebtoken": "^8.0.1",
         "log4js": "^1.1.1",
         "mongoose": "^4.9.9",
+        "password-hash": "^1.2.2",
         "puttu-redis": "git+https://github.com/capiotsoftware/puttu-redis.git",
         "swagger-express-mw": "^0.1.0",
         "swagger-mongoose-crud": "git+https://github.com/capiotsoftware/swagger-mongoose-crud.git",
