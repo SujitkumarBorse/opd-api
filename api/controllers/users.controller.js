@@ -20,7 +20,7 @@ let createToken = function(data) {
 
 };
 
-schema.post("save", createToken(this));
+// schema.post("save", createToken(this));
 
 var crudder = new SMCrud(schema, "users", options);
 
