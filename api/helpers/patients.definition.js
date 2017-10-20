@@ -20,6 +20,10 @@ var definition = {
             "Female"
         ]
     },
+    "dob": {
+        "type": "Date",
+        "required": true
+    },
     "address": {
         "address": {
             "type": "String"
