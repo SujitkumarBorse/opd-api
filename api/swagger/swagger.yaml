@@ -277,6 +277,250 @@ paths:
           description: No categories to list with the given parameter set.
         '500':
           description: Internal server error
+  /v1/appointments:
+    x-swagger-router-controller: controller
+    get:
+      description: Retrieve a list of appointments
+      operationId: v1_appointmentsList
+      parameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number of the request
+        - name: count
+          in: query
+          type: integer
+          description: Number of categories per page
+        - name: filter
+          in: query
+          type: string
+          description: Filter categories based on certain fields
+        - name: select
+          in: query
+          type: string
+          description: Comma seperated fields to be displayed
+        - name: sort
+          in: query
+          type: string
+          description: sort parameter
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    post:
+      description: Create a new appointments
+      operationId: v1_appointmentsCreate
+      parameters:
+        - name: data
+          in: body
+          description: Payload to create a appointments
+          schema:
+            $ref: '#/definitions/appointments_create'
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+  '/v1/appointments/{id}':
+    x-swagger-router-controller: controller
+    get:
+      description: Retrieve a list of appointments
+      operationId: v1_appointmentsShow
+      parameters:
+        - name: filter
+          in: query
+          type: string
+          description: Filter categories based on certain fields
+        - name: select
+          in: query
+          type: string
+          description: Comma seperated fields to be displayed
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the object to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    put:
+      description: Create a new appointments
+      operationId: v1_appointmentsUpdate
+      parameters:
+        - name: data
+          in: body
+          description: Payload to update a appointments
+          schema:
+            $ref: '#/definitions/appointments_create'
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the appointments to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    delete:
+      description: Create a new appointments
+      operationId: v1_appointmentsDestroy
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the appointments to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+  /v1/billing:
+    x-swagger-router-controller: controller
+    get:
+      description: Retrieve a list of billing
+      operationId: v1_billingList
+      parameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number of the request
+        - name: count
+          in: query
+          type: integer
+          description: Number of categories per page
+        - name: filter
+          in: query
+          type: string
+          description: Filter categories based on certain fields
+        - name: select
+          in: query
+          type: string
+          description: Comma seperated fields to be displayed
+        - name: sort
+          in: query
+          type: string
+          description: sort parameter
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    post:
+      description: Create a new billing
+      operationId: v1_billingCreate
+      parameters:
+        - name: data
+          in: body
+          description: Payload to create a billing
+          schema:
+            $ref: '#/definitions/billing_create'
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+  '/v1/billing/{id}':
+    x-swagger-router-controller: controller
+    get:
+      description: Retrieve a list of billing
+      operationId: v1_billingShow
+      parameters:
+        - name: filter
+          in: query
+          type: string
+          description: Filter categories based on certain fields
+        - name: select
+          in: query
+          type: string
+          description: Comma seperated fields to be displayed
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the object to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    put:
+      description: Create a new billing
+      operationId: v1_billingUpdate
+      parameters:
+        - name: data
+          in: body
+          description: Payload to update a billing
+          schema:
+            $ref: '#/definitions/billing_create'
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the billing to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    delete:
+      description: Create a new billing
+      operationId: v1_billingDestroy
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the billing to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
 definitions:
   login_user:
     properties:
@@ -380,6 +624,42 @@ definitions:
         type: string
       active:
         type: boolean
+      created:
+        type: string
+      updated:
+        type: string
+  appointments_create:
+    properties:
+      _id:
+        type: string
+      patientId:
+        type: string
+      dateTime:
+        type: string
+      status:
+        type: string
+      created:
+        type: string
+      updated:
+        type: string
+  billing_create:
+    properties:
+      _id:
+        type: string
+      patientId:
+        type: string
+      patientName:
+        type: string
+      dateTime:
+        type: string
+      amount:
+        type: string
+      clinicalTestType:
+        type: string
+      paymentType:
+        type: string
+      paymentTransactionId:
+        type: string
       created:
         type: string
       updated:
