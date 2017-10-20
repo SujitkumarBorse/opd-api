@@ -155,6 +155,128 @@ paths:
           description: No categories to list with the given parameter set.
         '500':
           description: Internal server error
+  /v1/patients:
+    x-swagger-router-controller: controller
+    get:
+      description: Retrieve a list of patients
+      operationId: v1_patientsList
+      parameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number of the request
+        - name: count
+          in: query
+          type: integer
+          description: Number of categories per page
+        - name: filter
+          in: query
+          type: string
+          description: Filter categories based on certain fields
+        - name: select
+          in: query
+          type: string
+          description: Comma seperated fields to be displayed
+        - name: sort
+          in: query
+          type: string
+          description: sort parameter
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    post:
+      description: Create a new patients
+      operationId: v1_patientsCreate
+      parameters:
+        - name: data
+          in: body
+          description: Payload to create a patients
+          schema:
+            $ref: '#/definitions/patients_create'
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+  '/v1/patients/{id}':
+    x-swagger-router-controller: controller
+    get:
+      description: Retrieve a list of patients
+      operationId: v1_patientsShow
+      parameters:
+        - name: filter
+          in: query
+          type: string
+          description: Filter categories based on certain fields
+        - name: select
+          in: query
+          type: string
+          description: Comma seperated fields to be displayed
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the object to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    put:
+      description: Create a new patients
+      operationId: v1_patientsUpdate
+      parameters:
+        - name: data
+          in: body
+          description: Payload to update a patients
+          schema:
+            $ref: '#/definitions/patients_create'
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the patients to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
+    delete:
+      description: Create a new patients
+      operationId: v1_patientsDestroy
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: Id of the patients to be updated
+      responses:
+        '200':
+          description: List of the entites
+        '400':
+          description: Bad parameters
+        '404':
+          description: No categories to list with the given parameter set.
+        '500':
+          description: Internal server error
 definitions:
   login_user:
     properties:
@@ -218,6 +340,44 @@ definitions:
               type: string
             specialization:
               type: string
+      active:
+        type: boolean
+      created:
+        type: string
+      updated:
+        type: string
+  patients_create:
+    properties:
+      _id:
+        type: string
+      firstName:
+        type: string
+      middleName:
+        type: string
+      lastName:
+        type: string
+      gender:
+        type: string
+      address:
+        properties:
+          address:
+            type: string
+          city:
+            type: string
+          state:
+            type: string
+          contry:
+            type: string
+          zip:
+            type: string
+      contact:
+        properties:
+          email:
+            type: string
+          mobile:
+            type: string
+      diseaseDignosedNote:
+        type: string
       active:
         type: boolean
       created:
