@@ -13,7 +13,7 @@ var definition = {
     "status": {
         "type": "String",
         "enum": [
-            "schedualed",
+            "scheduled",
             "inProgress",
             "completed",
             "cancelled"

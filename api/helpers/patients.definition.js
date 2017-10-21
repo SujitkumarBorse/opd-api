@@ -16,8 +16,8 @@ var definition = {
     "gender": {
         "type": "String",
         "enum": [
-            "Male",
-            "Female"
+            "male",
+            "female"
         ]
     },
     "dob": {
@@ -36,7 +36,7 @@ var definition = {
             "type": "String",
             "required": true
         },
-        "contry": {
+        "country": {
             "type": "String",
             "required": true
         },
