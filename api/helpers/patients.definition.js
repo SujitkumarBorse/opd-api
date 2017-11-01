@@ -3,6 +3,10 @@ var definition = {
         "type": "String",
         "default": null
     },
+    "doctorId": {
+        "type": "String",
+        "required": true
+    },
     "firstName": {
         "type": "String",
         "required": true
