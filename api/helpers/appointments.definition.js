@@ -19,6 +19,9 @@ var definition = {
             "cancelled"
         ]
     },
+    "amountPaid": {
+        "type": "Number"
+    },
     "created": {
         "type": "Date"
     },
@@ -26,4 +29,4 @@ var definition = {
         "type": "Date"
     }
 };
-module.exports.definition=definition;
+module.exports.definition = definition;
