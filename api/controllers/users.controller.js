@@ -24,7 +24,6 @@ var users = mongoose.model('users', schema);
 
 let loginUser = function (_req, _res) {
 
-    console.log("login data", _req.body);
     let data = _req.body;
     if (!data || !data.email || !data.password) {
         return _res.json({ status: 'failed', message: "Username/Password is missing." });
@@ -44,21 +43,19 @@ let loginUser = function (_req, _res) {
                 // if user is found and password is right, create a token with only our given payload
                 // remove password from user before creating token
                 delete user['password'];
-                
-                console.log(" $$ $ $ $ $ $$ ",typeof(user));
 
                 let data = {
-                    "_id" : user._id,
-                    "firstName" : user.firstName,
-                    "lastName" : user.lastName,
-                    "email" : user.email,
-                    "gender" : user.gender,
-                    "medicalRegistrationNo" : user.medicalRegistrationNo
+                    "_id": user._id,
+                    "firstName": user.firstName,
+                    "lastName": user.lastName,
+                    "email": user.email,
+                    "gender": user.gender,
+                    "medicalRegistrationNo": user.medicalRegistrationNo
                 };
 
                 // TODO: generate secrete while user register and use it
                 var token = jwt.sign(data, 'superSecret', {
-                    expiresIn : 1440 // expires in 24 hours
+                    expiresIn: 1440 // expires in 24 hours
                 });
                 // return the information including token as JSON
                 _res.json({
@@ -71,11 +68,40 @@ let loginUser = function (_req, _res) {
 };
 
 
+var changePassword = function (_req, _res) {
+
+    let data = _req.body;
+
+    if (!data || (!data.email || !data._id) || !data.currentPassword || !data.newPassword) {
+        return _res.json({ status: 'failed', message: "Data missing for change password." });
+    }
+    var query;
+    if (data && data._id) {
+        query = { "_id": data._id, "password": data.currentPassword };
+    } else if (data && data.email) {
+        query = { "email": data.email, "password": data.currentPassword }
+    } else {
+        return _res.json({ status: 'failed', message: "Something went wrong. Please tyr again later." });
+    }
+    users.update(query, { $set: { "password": data.newPassword } }, (err, user) => {
+        if (err) {
+            return _res.json({ status: 'failed', message: "Something went wrong. Please tyr again later." });
+        };
+        if (user.nModified === 0) {
+            _res.json({ status: 'failed', message: 'Details not matched to change password.' });
+        } else {
+            _res.json({ status: 'success', message: 'Password changed successfully.' });
+        }
+    });
+
+}
+
 module.exports = {
     create: crudder.create,
     index: crudder.index,
     show: crudder.show,
     destroy: crudder.markAsDeleted,
     update: crudder.update,
-    login: loginUser
+    login: loginUser,
+    changePassword: changePassword
 };

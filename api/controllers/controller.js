@@ -14,6 +14,7 @@ exports.v1_usersShow = usersController.show;
 exports.v1_usersDestroy = usersController.destroy;
 exports.v1_usersUpdate = usersController.update;
 exports.v1_loginUser = usersController.login;
+exports.v1_changePassword = usersController.changePassword;
 
 // Patient
 exports.v1_patientsCreate = patientsController.create;
