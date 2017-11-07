@@ -7,34 +7,38 @@ var definition = {
         "type": "String",
         "required": true
     },
+    "doctorId": {
+        "type": "String",
+        "required": true
+    },
     "patientName": {
         "type": "String",
         "required": true
     },
-    "dateTime": {
-        "type": "Date",
+    "appointmentId": {
+        "type": "String",
         "required": true
     },
     "amount": {
-        "type": "Date",
+        "type": "Number",
         "required": true
     },
-    "clinicalTestType": {
-        "type": "Date",
-        "required": true
-    },
-    "paymentType": {
-        "type": "String",
-        "enum": [
-            "cash",
-            "card",
-            "cheque",
-            "e-wallet"
-        ]
-    },
-    "paymentTransactionId": {
-        "type": "String"
-    },
+    // "clinicalTestType": {
+    //     "type": "Date",
+    //     "required": true
+    // },
+    // "paymentType": {
+    //     "type": "String",
+    //     "enum": [
+    //         "cash",
+    //         "card",
+    //         "cheque",
+    //         "e-wallet"
+    //     ]
+    // },
+    // "paymentTransactionId": {
+    //     "type": "String"
+    // },
     "created": {
         "type": "Date"
     },

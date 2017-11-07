@@ -10,6 +10,10 @@ var definition = {
     "dateTime": {
         "type": "Date"
     },
+    "doctorId": {
+        "type": "String",
+        "required": true
+    },
     "status": {
         "type": "String",
         "enum": [

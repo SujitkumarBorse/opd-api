@@ -681,7 +681,7 @@ definitions:
       dateTime:
         type: string
       amount:
-        type: string
+        type: number
       clinicalTestType:
         type: string
       paymentType:
